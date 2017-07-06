@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-// import axios from 'axios'; moved into sub-modules
- import AllAlbums from './AllAlbums';
+import axios from 'axios';
+import AllAlbums from './AllAlbums';
 import SingleAlbum from './SingleAlbum';
 import Sidebar from './Sidebar';
 import Player from './Player';
@@ -19,17 +19,19 @@ export default class Main extends Component {
     this.deselectAlbum = this.deselectAlbum.bind(this);
   }
 
-  // selectAlbum (albumId) {
-  //   axios.get(`/api/albums/${albumId}`)
-  //     .then(res => res.data)
-  //     .then(album => this.setState({
-  //       selectedAlbum: album
-  //     }));
-  // }
-  //
-  // deselectAlbum () {
-  //   this.setState({ selectedAlbum: {}});
-  // }
+
+
+  selectAlbum (albumId) {
+    axios.get(`/api/albums/${albumId}`)
+      .then(res => res.data)
+      .then(album => this.setState({
+        selectedAlbum: album
+      }));
+  }
+
+  deselectAlbum () {
+    this.setState({ selectedAlbum: {}});
+  }
 
   render () {
     return (
