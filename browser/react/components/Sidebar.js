@@ -17,8 +17,6 @@ const Sidebar = (props) => {
         </sidebar>
     );
 
-
-
   const deselectAlbum = props.deselectAlbum;
 }
 
