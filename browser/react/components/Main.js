@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 import AllAlbums from './AllAlbums';
 import SingleAlbum from './SingleAlbum';
 import Sidebar from './Sidebar';
@@ -15,47 +15,49 @@ export default class Main extends Component {
       // albums: [],
       selectedAlbum: {}
     };
-    this.selectAlbum = this.selectAlbum.bind(this);
-    this.deselectAlbum = this.deselectAlbum.bind(this);
+    // this.selectAlbum = this.selectAlbum.bind(this);
+    // this.deselectAlbum = this.deselectAlbum.bind(this);
   }
 
 
 
-  selectAlbum (albumId) {
-    axios.get(`/api/albums/${albumId}`)
-      .then(res => res.data)
-      .then(album => this.setState({
-        selectedAlbum: album
-      }));
-  }
-
-  deselectAlbum () {
-    this.setState({ selectedAlbum: {}});
-  }
+  // selectAlbum (albumId) {
+  //   axios.get(`/api/albums/${albumId}`)
+  //     .then(res => res.data)
+  //     .then(album => this.setState({
+  //       selectedAlbum: album
+  //     }));
+  // }
+  //
+  // deselectAlbum () {
+  //   this.setState({ selectedAlbum: {}});
+  // }
 
   render () {
     return (
-      <div id="main" className="container-fluid">
-        <div className="col-xs-2">
-          <Sidebar deselectAlbum={this.deselectAlbum} />
-        </div>
-        <HashRouter>
-            <div className="col-xs-10">
-                {/*{*/}
-                    {/*this.state.selectedAlbum.id ?*/}
-                        {/*<SingleAlbum album={this.state.selectedAlbum} /> :*/}
-                        {/*<AllAlbums albums={this.state.albums} selectAlbum={this.selectAlbum} />*/}
-                {/*}*/}
-                <Route exact path="/" component={AllAlbums} />
-                <Route exact path="/albums" component={AllAlbums} />
-                <Route path="/albums/:albumId" component={SingleAlbum} />
 
+        <HashRouter>
+
+            <div id="main" className="container-fluid">
+                {/*sidebar*/}
+                <div className="col-xs-2">
+                    <Sidebar deselectAlbum={this.deselectAlbum} />
+                </div>
+
+                {/*main body*/}
+                <div className="col-xs-10">
+                    <Route exact path="/" component={AllAlbums} />
+                    <Route exact path="/albums" component={AllAlbums} />
+                    <Route path="/albums/:albumId" component={SingleAlbum} />
+                </div>
+
+                {/*player*/}
+                <Player />
 
             </div>
+
         </HashRouter>
 
-          <Player />
-      </div>
     );
   }
 }
